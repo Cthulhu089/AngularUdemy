@@ -1,3 +1,21 @@
-<p>
-  search works!
-</p>
+<div class = "container widget-container">
+  <div class="row">
+
+    <div class="col-md-3">
+      <label for="artist">Search artist</label>
+      <input placeholder="Search artist" type="text" class="form-control" (keyup)="SearchArtist()" [(ngModel)]="artist">
+    </div>
+    <div class="col-md-9" *ngIf="artist.length > 1">
+      <h1>{{artist}}</h1>
+      <hr>
+      <div class="row">
+        <div class="col-md-3 text-center puntero" *ngFor="let artist of _spotify.artist" [routerLink]="['/artist', artista.id]">
+          <img [src]="artist.images[1].url | noimage" class="img-thumnail">
+          <p>
+            {{artist.name}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
