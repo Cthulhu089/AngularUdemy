@@ -1,3 +1,44 @@
-<p>
-  {{artistInfo.name}}
-</p>
+<div class="container widget-container">
+  <div class="row">
+    <div class="col-md-3">
+      <img [src]="artistInfo.images | emptyImage" alt="img-thumbnail">
+    </div>
+
+    <div class="col-md-9">
+      <h1>{{artistInfo.name}}</h1>
+      <hr>
+      <a [href]="artistInfo.external_urls?.spotify" target="_blank" class="btn btn-outline-success">Redirect to spotify</a>
+      <button [routerLink]="['/search']" class="btn btn-outline-danger">Return to search</button>
+    </div>
+  </div>
+
+  <div class="row widget-container">
+    <div class="col-md-12">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Populariti</th>
+            <th>Listen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr*ngFor="let track of artistTopTracks; let i = index">
+            <td>{{i + 1}}</td>
+            <td>
+              <img [src]="track.album.images | emptyImage" class="track-image">
+            </td>
+            <td>{{track.name}}</td>
+            <td>{{track.popularity}}</td>
+            <td>
+              <iframe [src]="track.uri | domsecure:'https://open.spotify.com/embed?uri='" width="" height=""></iframe>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

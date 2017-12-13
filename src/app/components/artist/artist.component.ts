@@ -7,9 +7,11 @@ import {SpotifyService} from '../../services/spotify.service';
   templateUrl: './artist.component.html',
   styles: []
 })
+
 export class ArtistComponent implements OnInit {
   artistInfo:any = {};
-  artistTopTracks:any = {}
+  artistTopTracks:any[] = [];
+
   constructor(private activatedRoute:ActivatedRoute,
               public _spotify:SpotifyService) { }
 
